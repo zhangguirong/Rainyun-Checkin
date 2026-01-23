@@ -1014,9 +1014,12 @@ def one() -> str:
     获取一条一言。
     :return:
     """
-    url = "https://v1.hitokoto.cn/"
-    res = requests.get(url).json()
-    return res["hitokoto"] + "    ----" + res["from"]
+    try:
+        url = "https://v1.hitokoto.cn/"
+        res = requests.get(url, timeout=5).json()
+        return res["hitokoto"] + "    ----" + res["from"]
+    except Exception:
+        return ""
 
 
 def add_notify_function():
@@ -1111,8 +1114,15 @@ def send(title: str, content: str, ignore_default_config: bool = False, **kwargs
     content += "\n\n" + one() if hitokoto != "false" else ""
 
     notify_function = add_notify_function()
+
+    def safe_run(func, title, content):
+        try:
+            func(title, content)
+        except Exception as e:
+            print(f"{func.__name__} 推送异常: {e}")
+
     ts = [
-        threading.Thread(target=mode, args=(title, content), name=mode.__name__)
+        threading.Thread(target=safe_run, args=(mode, title, content), name=mode.__name__)
         for mode in notify_function
     ]
     [t.start() for t in ts]
