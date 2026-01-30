@@ -49,8 +49,8 @@ push_config = {
 
     'CONSOLE': False,                    # 控制台输出
 
-    'DD_BOT_SECRET': '',                # 钉钉机器人的 DD_BOT_SECRET
-    'DD_BOT_TOKEN': '',                 # 钉钉机器人的 DD_BOT_TOKEN
+    'DD_BOT_SECRET': 'SECef106943f898f5ee98b8ca46003d5a31907eaa4c1d27eaa158542aec76b0fc31',                # 钉钉机器人的 DD_BOT_SECRET
+    'DD_BOT_TOKEN': 'de99d7978ead1ed66eed485cdfd8a0abcbf3d25b28c0b5bda04a1f14a2d10b71',                 # 钉钉机器人的 DD_BOT_TOKEN
 
     'FSKEY': '',                        # 飞书机器人的 FSKEY
     'FSSECRET': '',                     # 飞书机器人的 FSSECRET，对应安全设置里的签名校验密钥
